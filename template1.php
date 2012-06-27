@@ -4,13 +4,16 @@ echo 'Connection to MySQL established<br />';
 mysql_select_db('csv_db');
 echo 'Connected to csv_db<br />';
 
+//Here's where I attempted to change this to the proper way to deal with databases.
+//However, I was having trouble then converting it into the variables below, so the next 5
+//lines are kind of an orphan:
 $result = mysql_query('SELECT * FROM tbl_name WHERE company="Citigroup Inc."');
 	if (!$result) {
 		echo("<p>There was an error performing the query: " . mysql_error() . "</p>");
 		exit();
 	}
 	
-//Ought to change these to non-snake case
+//Ought to change these to non-snake case <- PHP variables like camelCase right?
 $company = mysql_query('SELECT company FROM tbl_name WHERE company="Citigroup Inc."');
 $score = mysql_query('SELECT score FROM tbl_name WHERE company="Citigroup Inc."');
 $rating = mysql_query('SELECT rating FROM tbl_name WHERE company="Citigroup Inc."');
@@ -23,6 +26,7 @@ $disclose_ie = mysql_query('SELECT disclose_ie FROM tbl_name WHERE company="Citi
 $disclose_trade_asssoc = mysql_query('SELECT disclose_trade_asssoc FROM tbl_name WHERE company="Citigroup Inc."');
 $disclose_ballot_measure = mysql_query('SELECT disclose_ballot_measure FROM tbl_name WHERE company="Citigroup Inc."');
 //This is gross. Change it. Also, it's not working correctly
+//(Here is my attempt to convert a Y/N in my database into the green checkmark or red X that I want. See below table)
 $archive_reports = mysql_query('SELECT archive_reports FROM tbl_name WHERE company="Citigroup Inc."');
 echo mysql_result($archive_reports, 0);
 if ($archive_reports == 'y')
